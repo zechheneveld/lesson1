@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,8 @@ public class DataController {
 //	}
 	@GetMapping("/newyear")
 	public String getNewYear() {
-		return LocalTime.now().toString() + " days until the new year";
+		LocalDate newYear = LocalDate.parse("2020-01-01");
+		long countdown = LocalDate.now().until(newYear, ChronoUnit.DAYS);
+		return countdown + " days until the new year";
 	}
 }
